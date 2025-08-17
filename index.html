@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>The Money Problem in Major League Baseball</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="intro-screen" class="intro-screen">
+
+
+    
+    <!-- Slide 1: Hook - The American Dream vs Reality -->
+    <div class="intro-slide" id="slide-1">
+        <h1 class="intro-title">The American Dream?</h1>
+        <p class="intro-subtitle">In America, we believe that hard work and talent should determine success.</p>
+        <p class="intro-subtitle">But what happens when money becomes the deciding factor?</p>
+        <div style="margin-top: 40px;">
+            <img src="logos/mlb.png" style="width: 120px; opacity: 0.8;" alt="MLB Logo">
+        </div>
+    </div>
+
+    <!-- Slide 2: The Setting -->
+    <div class="intro-slide" id="slide-2">
+        <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Major League Baseball</h2>
+        <p class="intro-subtitle">30 teams. 162 games per season. One championship.</p>
+        <p class="intro-subtitle">Every spring, fans believe their team has a chance...</p>
+        <div class="shocking-stat" style="margin-top: 40px;">
+            But do they <em>really</em>?
+        </div>
+    </div>
+
+    <!-- Slide 3: The Shocking Reality -->
+    <div class="intro-slide" id="slide-3">
+        <h2 style="font-size: 2.5rem; margin-bottom: 30px; color: #ff6b6b;">The Harsh Reality</h2>
+        <div class="salary-viz">
+            <div>
+                <div style="text-align: center; margin-bottom: 10px;">Lowest Payroll</div>
+                <div class="salary-bar small" id="salary-low">$60M</div>
+            </div>
+            <div class="vs-text">VS</div>
+            <div>
+                <div style="text-align: center; margin-bottom: 10px;">Highest Payroll</div>
+                <div class="salary-bar large" id="salary-high">$280M</div>
+            </div>
+        </div>
+        <div class="shocking-stat">
+            That's a <span style="color: #FFD700;">4.6x</span> difference!
+        </div>
+    </div>
+
+    <!-- Slide 4: Real Team Comparison -->
+    <div class="intro-slide" id="slide-4">
+        <h2 style="font-size: 2rem; margin-bottom: 20px;">Meet Two Real Teams</h2>
+        <div class="team-comparison">
+            <div class="team-card poor" id="athletics-card">
+                <img src="logos/athletics.png" class="team-logo-large" alt="Athletics">
+                <h3 class="team-name">Oakland Athletics</h3>
+                <div class="stat-label">Average Payroll</div>
+                <div class="stat-number payroll">$65.6M</div>
+                <div class="stat-label">Average Wins</div>
+                <div class="stat-number wins">66</div>
+                <div style="margin-top: 20px; font-style: italic; opacity: 0.8;">
+                    "Small market team"
+                </div>
+            </div>
+            <div class="team-card rich" id="dodgers-card">
+                <img src="logos/dodgers.png" class="team-logo-large" alt="Dodgers">
+                <h3 class="team-name">Los Angeles Dodgers</h3>
+                <div class="stat-label">Average Payroll</div>
+                <div class="stat-number payroll">$254.1M</div>
+                <div class="stat-label">Average Wins</div>
+                <div class="stat-number wins">104</div>
+                <div style="margin-top: 20px; font-style: italic; opacity: 0.8;">
+                    "Big market powerhouse"
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 30px; font-size: 1.3rem;">
+            The Dodgers spend <strong style="color: #ff6b6b;">4x more</strong> and win <strong style="color: #60a5fa;">38 more games</strong> per season
+        </div>
+    </div>
+
+    <!-- Slide 5: The Human Impact -->
+    <div class="intro-slide" id="slide-5">
+        <h2 style="font-size: 2.2rem; margin-bottom: 30px;">What This Really Means</h2>
+        <div class="reality-check">
+            <div class="reality-title">For Fans:</div>
+            <div class="reality-fact">• Your team's budget determines your hope</div>
+            <div class="reality-fact">• Some fans start each season already defeated</div>
+            <div class="reality-fact">• Championships become predictable</div>
+        </div>
+        <div class="reality-check" style="border-color: #22c55e; background: rgba(34, 197, 94, 0.1);">
+            <div class="reality-title" style="color: #22c55e;">For Players:</div>
+            <div class="reality-fact">• Talent alone isn't enough</div>
+            <div class="reality-fact">• Where you play determines your success</div>
+            <div class="reality-fact">• The playing field isn't level</div>
+        </div>
+    </div>
+
+    <!-- Slide 6: But Wait... -->
+    <div class="intro-slide" id="slide-6">
+        <h2 style="font-size: 2.5rem; margin-bottom: 30px; color: #FFD700;">But Wait...</h2>
+        <p class="intro-subtitle">What if we told you that some of baseball's biggest spenders...</p>
+        <p class="intro-subtitle" style="color: #ff6b6b; font-weight: bold; font-size: 1.8rem;">...still lose?</p>
+        <p class="intro-subtitle">And some small-budget teams occasionally shock the world?</p>
+        <div style="margin-top: 40px; font-size: 1.5rem; font-style: italic; opacity: 0.9;">
+            Maybe money doesn't <em>always</em> buy championships...
+        </div>
+    </div>
+
+    <!-- Slide 7: The Big Question -->
+    <div class="intro-slide" id="slide-7">
+        <div class="question-reveal">
+            So here's the <span class="highlight">million dollar</span> question:
+        </div>
+        <div class="question-reveal" style="margin-top: 30px; font-size: 3.5rem;">
+            Does money <em>always</em><br>buy wins in baseball?
+        </div>
+        <button id="explore-btn" class="explore-btn">Let's Find Out</button>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    
+    <div class="skip-instruction">
+        Press SPACE or ESC to skip
+    </div>
+</div>
+
+<header>
+    <h1>The Money Problem in Major League Baseball</h1>
+</header>
+
+<div id="map-container">
+    <div class="dropdown" style="left: 10px; right: auto;">
+        <button class="dropdown-btn">Filters ▼</button>
+        <div class="dropdown-content" style="right: auto; left: 0;">
+            <div class="filter-group">
+                <h3>League <button class="select-all" data-filter="league">Select All</button></h3>
+                <label class="filter-option"><input type="checkbox" class="league-filter" value="AL" checked> American League</label>
+                <label class="filter-option"><input type="checkbox" class="league-filter" value="NL" checked> National League</label>
+            </div>
+            <div class="filter-group">
+                <h3>Division <button class="select-all" data-filter="division">Select All</button></h3>
+                <label class="filter-option"><input type="checkbox" class="division-filter" value="AL West" checked> AL West</label>
+                <label class="filter-option"><input type="checkbox" class="division-filter" value="AL East" checked> AL East</label>
+                <label class="filter-option"><input type="checkbox" class="division-filter" value="AL Central" checked> AL Central</label>
+                <label class="filter-option"><input type="checkbox" class="division-filter" value="NL West" checked> NL West</label>
+                <label class="filter-option"><input type="checkbox" class="division-filter" value="NL East" checked> NL East</label>
+                <label class="filter-option"><input type="checkbox" class="division-filter" value="NL Central" checked> NL Central</label>
+            </div>
+            <div class="filter-group">
+                <h3>Pay Tier <button class="select-all" data-filter="pay-tier">Select All</button></h3>
+                <label class="filter-option"><input type="checkbox" class="pay-tier-filter" value="1" checked> 5 Highest Payrolls</label>
+                <label class="filter-option"><input type="checkbox" class="pay-tier-filter" value="2" checked> 6-10</label>
+                <label class="filter-option"><input type="checkbox" class="pay-tier-filter" value="3" checked> 11-15</label>
+                <label class="filter-option"><input type="checkbox" class="pay-tier-filter" value="4" checked> 16-20</label>
+                <label class="filter-option"><input type="checkbox" class="pay-tier-filter" value="5" checked> 21-25</label>
+                <label class="filter-option"><input type="checkbox" class="pay-tier-filter" value="6" checked> 5 Cheapest Payrolls</label>
+            </div>
+        </div>
+    </div>
+    <div id="map"></div>
+</div>
+
+<button id="help-btn">Help</button>
+<div id="help-box" style="display:none;">
+    <h3>How to Use This Visualization</h3>
+    <ul style="padding-left: 18px;">
+        <li>Hover over a team logo for quick info</li>
+        <li>Click on a logo for detailed team insights</li>
+        <li>Use the filters to explore patterns across leagues, divisions, and payroll tiers</li>
+    </ul>
+</div>
+
+
+<script src="main.js"></script>
+</body>
+</html>

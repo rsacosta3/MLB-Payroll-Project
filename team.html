@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Team Dashboard</title>
+    <link rel="stylesheet" href="team.css"/>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="header-left">
+            <a href="index.html" class="back-button">
+                <span class="back-arrow">←</span>
+                <span>Back to Map</span>
+            </a>
+        </div>
+        <div class="header-center">
+            <h1 class="team-title" id="team-name"></h1>
+        </div>
+        <div class="header-right">
+            <img id="team-logo" class="team-logo" src="" alt="Team Logo">
+        </div>
+    </div>
+
+    <!-- New Summary Div -->
+    <div id="team-summary" class="team-summary"></div>
+
+    <div class="dashboard">
+        <div id="visualization-container">
+            <div class="chart-container">
+                <h2 class="chart-title">Recent Spending vs. Wins</h2>
+                <div id="spending-wins-chart"></div>
+            </div>
+        </div>
+        <div id="pie-chart-container">
+            <div class="chart-container">
+                <h2 class="chart-title">Payroll Breakdown</h2>
+                <div id="pie-chart"></div>
+            </div>
+        </div>
+        <div id="comparison-chart-container">
+            <div class="chart-container">
+                <h2 class="chart-title">Spending per Win Comparison</h2>
+                <div id="comparison-chart" style="width:100%;height:600px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="team.js"></script>
+</body>
+</html>
